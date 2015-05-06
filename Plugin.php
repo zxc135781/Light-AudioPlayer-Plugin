@@ -1,7 +1,7 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 /**
- * Light-AudioPlayer For Typecho
+ * <a href="https://github.com/mikeyzm/Light-AudioPlayer" target="_blank">Light-AudioPlayer</a> For Typecho. <a href="https://github.com/mikeyzm/Light-AudioPlayer-Plugin" target="_blank">源代码参考</a>
  * 
  * @package Light-AudioPlayer
  * @author Mike

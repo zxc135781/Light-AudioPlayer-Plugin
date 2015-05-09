@@ -68,7 +68,7 @@ class LightAudioPlayer_Plugin implements Typecho_Plugin_Interface
         $form->addInput($MP3Address);
 
         $jQuery = new Typecho_Widget_Helper_Form_Element_Checkbox('jQuery',
-        array('1'=>_t('载入最新版本的jQuery')),NULL,_t('jQuery依赖'));
+        array('1'=>_t('载入最新版本的jQuery')),array('1'),_t('jQuery依赖'));
         $form->addInput($jQuery);
     }
     

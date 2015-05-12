@@ -58,8 +58,8 @@ class LightAudioPlayer_Plugin implements Typecho_Plugin_Interface
         <div class="la-header">欢迎使用Light-AudioPlayer For Typecho</div>
         <div class="la-content">
         <p>来自本人开源项目：<a href="https://github.com/mikeyzm/Light-AudioPlayer" target="_blank">Light-AudioPlayer</a>
-        <p>使用说明：在文章内输入<code>[mp3]文件地址[/mp3]</code>即可</p>
-        <!--<p>可附带参数<code>preload,autoplay,loop</code><a href="https://github.com/mikeyzm/Light-AudioPlayer/blob/master/README.md" target="_blank">详细说明</a></p>-->
+        <p>使用说明：在文章内输入<code>[mp3]文件地址|参数1|参数2[/mp3]</code>即可</p>
+        <p>可附带参数<code>autoplay</code> 自动播放,<code>loop</code> 循环播放</p>
         </div>
         ';
 
@@ -162,17 +162,15 @@ class LightAudioPlayer_Plugin implements Typecho_Plugin_Interface
     public static function parseCallback($matches)
     {
         $atts = explode('|',$matches[2]);
-        
+        $att = NULL;
         //分离参数
         $files = array_shift($atts);
-        $data = array();
-
-        foreach ($atts as $att) {
-            $pair = explode('=',$att);
-            $data[trim($pair[0])] = trim($pair[1]);
+        foreach($atts as $playConfig) {
+            $att .= $playConfig." ";  
         }
 
-        return self::getPlayer($files,$data);
+
+        return self::getPlayer($files,$att);
     }
 
     /**
@@ -192,8 +190,7 @@ class LightAudioPlayer_Plugin implements Typecho_Plugin_Interface
         }
 
         //生成实例
-        $playerCode = '<audio src="'.$source.'" preload="auto" controls></audio>';
-
+        $playerCode = '<audio src="'.$source.'" preload="auto" '.$playerOptions.'controls></audio>';
         return $playerCode;
     }
 
